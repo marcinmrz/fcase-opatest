@@ -30,7 +30,7 @@ void setup() {
   lcd.setCursor(0,0); lcd.print("Autokalibracja...");
   sensorCalibrate(SerieLenght);
   Serial.begin(14400);
-  delay(2000); 
+  delay(100); 
   digitalWrite(ledBLUE, LOW);
   digitalWrite(ledGREEN, HIGH);
 }
@@ -43,7 +43,7 @@ int sensorCalibrate(int serie) {
  delay (RSTAB);
  for (int i=0; i<serie; i++) {
    summary = summary + analogRead(sensorPin);
-   delay(50);
+   delay(RSTAB);
  }
  calibHi = int ( summary/serie );
  
@@ -51,7 +51,7 @@ int sensorCalibrate(int serie) {
  delay (RSTAB);
  for (int i=0; i<serie; i++) {
    summary = summary + analogRead(sensorPin); 
-   delay(50);
+   delay(RSTAB);
  }
  calibLo = int ( summary/serie );
  
